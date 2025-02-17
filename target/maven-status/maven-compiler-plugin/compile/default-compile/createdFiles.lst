@@ -1,0 +1,8 @@
+org/example/app/Main.class
+org/example/app/aspect/TrackUserAction.class
+org/example/app/configuration/ThymeleafConfiguration.class
+org/example/app/model/User.class
+org/example/app/controller/UserController.class
+org/example/app/service/UserService.class
+org/example/app/aspect/UserActionAspect.class
+org/example/app/repository/UserRepository.class
