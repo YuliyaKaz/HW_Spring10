@@ -15,47 +15,47 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/users", params = "format=page")
+    @GetMapping("/users")
     @TrackUserAction
-    public String getAllUsersPage(Model model)
-    {
+    public String getAllUsersPage(Model model) {
+        System.out.println("Get all users page called");
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "users_page";
     }
 
-    @RequestMapping(name = "/new", params = "format=page")
+    @GetMapping("/users/new")
     @TrackUserAction
     public String createUserForm(Model model) {
+        System.out.println("Create User Form called");
         model.addAttribute("user", new User());
         return "user_form";
     }
 
-    @PostMapping
+    @PostMapping("/users")
     public String saveUser(@ModelAttribute User user) {
         userService.saveUser(user);
-        return "redirect:/users_page";
+        return "redirect:/users";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/users/edit/{id}")
     public String editUserForm(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
+        if (user == null) {
+            return "redirect:/users";
+        }
         model.addAttribute("user", user);
         return "user_form";
     }
-
-    @PostMapping("/{id}")
+    @PostMapping("/users/{id}")
     public String updateUser(@PathVariable Long id, @ModelAttribute User user) {
         user.setId(id);
         userService.saveUser(user);
-        return "redirect:/users_page";
+        return "redirect:/users";
     }
-
-  //  @GetMapping(name = "/{id}/delete", params = "format=page")
-    @TrackUserAction
-    @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        userService.deleteUserById(id);
-        return "redirect:/users_page";
-    }
+      @DeleteMapping("/users/{id}")
+      public String deleteUser(@PathVariable Long id) {
+          userService.deleteUserById(id);
+          return "redirect:/users";
+      }
 }

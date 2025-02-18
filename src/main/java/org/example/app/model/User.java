@@ -17,7 +17,11 @@ public class User {
     private String name;
     private String email;
 
-    public User(long l, String алиса, String s) {
+    public User(long id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
     }
+
     public User() {}
 }

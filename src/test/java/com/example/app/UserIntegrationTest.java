@@ -48,7 +48,8 @@ public class UserIntegrationTest {
         when(userService.getAllUsers()).thenReturn(users);
 
         // Выполнение запроса и проверка результата
-        mockMvc.perform(get("/users").param("format", "page"))
+        mockMvc.perform(get("/users")//.param("format", "page")
+                )
                 .andExpect(status().isOk())
                 .andExpect(view().name("users_page"))
                 .andExpect(model().attribute("users", users));
@@ -60,9 +61,9 @@ public class UserIntegrationTest {
     public void testSaveUser() throws Exception {
         User user = new User(1L, "Алиса", "alice@gmail.com");
 
-        mockMvc.perform(post("/").flashAttr("user", user))
+        mockMvc.perform(post("/users/").flashAttr("user", user))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/users_page"));
+                .andExpect(redirectedUrl("/users"));
 
         verify(userService).saveUser(user);
     }
@@ -72,7 +73,7 @@ public class UserIntegrationTest {
         User user = new User(1L, "Алиса", "alice@gmail.com");
         when(userService.getUserById(1L)).thenReturn(user);
 
-        mockMvc.perform(get("/edit/1"))
+        mockMvc.perform(get("/users/edit/1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user_form"))
                 .andExpect(model().attribute("user", user));
@@ -84,18 +85,18 @@ public class UserIntegrationTest {
     public void testUpdateUser() throws Exception {
         User user = new User(1L, "Алиса", "alice@gmail.com");
 
-        mockMvc.perform(post("/1").flashAttr("user", user))
+        mockMvc.perform(post("/users/1").flashAttr("user", user))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/users_page"));
+                .andExpect(redirectedUrl("/users"));
 
         verify(userService).saveUser(user);
     }
 
     @Test
     public void testDeleteUser() throws Exception {
-        mockMvc.perform(delete("/1"))
+        mockMvc.perform(delete("/users/1"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/users_page"));
+                .andExpect(redirectedUrl("/users"));
 
         verify(userService).deleteUserById(1L);
     }

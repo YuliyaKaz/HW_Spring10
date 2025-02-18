@@ -45,8 +45,8 @@ public class UnitTest {
 
         when(userService.getAllUsers()).thenReturn(users);
 
-        mockMvc.perform(get("/users")
-                        .param("format", "page"))
+        mockMvc.perform(get("/users"))
+//                        .param("format", "page"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("users"))
                 .andExpect(view().name("users_page"));
@@ -58,10 +58,9 @@ public class UnitTest {
     public void testSaveUsers() throws Exception {
         User user = new User(1L, "Алиса", "alice@gmail.com");
 
-        mockMvc.perform(post("/").flashAttr("user", user)
-                .param("name", "Алиса"))
+        mockMvc.perform(post("/users").flashAttr("user", user))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/users_page"));
+                .andExpect(redirectedUrl("/users"));
         verify(userService).saveUser(user);
     }
 
@@ -70,7 +69,7 @@ public class UnitTest {
         User user = new User (1L, "Алиса", "alice@gmail.com");
         when(userService.getUserById(1L)).thenReturn(user);
 
-        mockMvc.perform(get("/edit/1"))
+        mockMvc.perform(get("/users/edit/1"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("user_form"))
                 .andExpect(model().attribute("user", user));
@@ -80,9 +79,9 @@ public class UnitTest {
 
     @Test
     public void testDeleteUser() throws Exception {
-        mockMvc.perform(delete("/1"))
+        mockMvc.perform(delete("/users/1"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/users_page"));
+                .andExpect(redirectedUrl("/users"));
 
         verify(userService).deleteUserById(1L);
     }
