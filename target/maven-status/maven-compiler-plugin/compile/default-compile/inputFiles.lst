@@ -1,6 +1,8 @@
 /home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/aspect/UserActionAspect.java
 /home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/controller/UserController.java
+/home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/configuration/IntegrationConfig.java
 /home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/model/User.java
+/home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/configuration/ChannelConfig.java
 /home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/repository/UserRepository.java
 /home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/aspect/TrackUserAction.java
 /home/yuliya/IdeaProjects/HW_Spring_02/src/main/java/org/example/app/Main.java

@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------
 Test set: com.example.app.UnitTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.461 s - in com.example.app.UnitTest
+Tests run: 4, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.705 s <<< FAILURE! - in com.example.app.UnitTest
+testSaveUsers  Time elapsed: 0.105 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.messaging.MessageChannel.send(org.springframework.messaging.Message)" because "this.userRequestChannel" is null
+	at com.example.app.UnitTest.testSaveUsers(UnitTest.java:61)
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.messaging.MessageChannel.send(org.springframework.messaging.Message)" because "this.userRequestChannel" is null
+	at com.example.app.UnitTest.testSaveUsers(UnitTest.java:61)
+
+testDeleteUser  Time elapsed: 0.03 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.messaging.MessageChannel.send(org.springframework.messaging.Message)" because "this.userRequestChannel" is null
+	at com.example.app.UnitTest.testDeleteUser(UnitTest.java:82)
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.messaging.MessageChannel.send(org.springframework.messaging.Message)" because "this.userRequestChannel" is null
+	at com.example.app.UnitTest.testDeleteUser(UnitTest.java:82)
+

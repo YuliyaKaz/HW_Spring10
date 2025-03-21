@@ -3,6 +3,7 @@ package org.example.app.service;
 import org.example.app.model.User;
 import org.example.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
